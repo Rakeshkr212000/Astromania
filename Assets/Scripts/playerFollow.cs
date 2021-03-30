@@ -21,9 +21,12 @@ public class playerFollow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit " + collision.name);
-        Destroy(collision.gameObject);
-        count++;
-        Debug.Log("Count = " + count);
+        if(collision.tag=="Asteroid")
+        {
+            Debug.Log("Asteroid destroyed");
+            Destroy(collision.gameObject);
+            count++;
+            Debug.Log("Count: " + count);
+        }
     }
 }

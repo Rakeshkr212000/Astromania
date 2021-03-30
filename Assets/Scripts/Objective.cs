@@ -23,7 +23,11 @@ public class Objective : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        health--;
-        Debug.Log("Health left = " + health);
+        if(collision.tag=="Asteroid")
+        {
+            Debug.Log("Hit by asteroid");
+            health--;
+            Debug.Log("Health: " + health);
+        }
     }
 }
