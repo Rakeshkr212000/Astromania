@@ -13,6 +13,9 @@ public class asteroid : MonoBehaviour
     public float screenRight;
     public float screenTop;
     public float screenBottom;
+
+
+    private int count;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class asteroid : MonoBehaviour
         float torque = Random.Range(-maxTorque, maxTorque);
         rb.AddForce(thrust);
         rb.AddTorque(torque);
+        count = 0;
     }
 
     // Update is called once per frame
@@ -43,5 +47,16 @@ public class asteroid : MonoBehaviour
             newPos.x = screenRight;
         }
         transform.position = newPos;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag=="Player")
+        {
+            Debug.Log("Hit reg");
+            count++;
+            Debug.Log("Count: " + count);
+            Destroy(gameObject);
+        }
     }
 }
